@@ -15,6 +15,8 @@ ButtonElement resetBtn = querySelector('#reset-btn');
 SpanElement timerMinutes = querySelector('#timer-minutes');
 SpanElement timerSeconds = querySelector('#timer-seconds');
 
+CountdownTimer timer;
+
 void main() {
   // Top button listeners
   pomodoroBtn.onClick.listen(pomodoroBtnClickHandler);
@@ -26,18 +28,21 @@ void main() {
   stopBtn.onClick.listen(stopBtnClickHandler);
   resetBtn.onClick.listen(resetBtnClickHandler);
 
-  new CountdownTimer(Duration(minutes: 25), timerMinutes, timerSeconds);
+  timer = new CountdownTimer(timerMinutes, timerSeconds);
 }
 
 pomodoroBtnClickHandler(MouseEvent event) {
+  timer.createTimer(Duration(minutes: 25));
   print('pomodoroclicked1');
 }
 
 shortBreakBtnClickHandler(MouseEvent event) {
+  timer.createTimer(Duration(minutes: 5));
   print('shortbreakclicked');
 }
 
 longBreakBtnClickHandler(MouseEvent event) {
+  timer.createTimer(Duration(minutes: 10));
   print('longbreakclicked');
 }
 

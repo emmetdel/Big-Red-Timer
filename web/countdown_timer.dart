@@ -4,29 +4,34 @@ import 'dart:html';
 
 class CountdownTimer {
   DateTime _timerDuration;
-  Duration duration;
 
   SpanElement minute;
   SpanElement seconds;
 
   int interval = 1;
 
-  CountdownTimer(this.duration, this.minute, this.seconds) {
-    _createTimer();
+  Timer timer;
+
+  CountdownTimer(this.minute, this.seconds);
+
+  createTimer(Duration duration) {
+    if (timer != null) {
+      timer.cancel();
+      timer = null;
+    }
+    _timerDuration = new DateTime(0).add(duration);
+    timer = Timer.periodic(Duration(seconds: 1), (Timer t) => handleTimer(t));
   }
 
-  _createTimer() {
-    _timerDuration = new DateTime(0).add(duration);
-    Timer.periodic(Duration(seconds: 1), (Timer t) {
-      //create new date time
-      var newDuration = _timerDuration.subtract(Duration(seconds: interval));
+  handleTimer(Timer timer) {
+    //create new date time
+    var newDuration = _timerDuration.subtract(Duration(seconds: interval));
 
-      //update minutes and seconds
-      minute.text = newDuration.minute.toString();
-      seconds.text = newDuration.second.toString();
+    //update minutes and seconds
+    minute.text = newDuration.minute.toString();
+    seconds.text = newDuration.second.toString();
 
-      interval++;
-    });
+    interval++;
   }
 
   // updateTimer(String minutes, String seconds) {
