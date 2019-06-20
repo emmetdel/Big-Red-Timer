@@ -28,22 +28,24 @@ void main() {
   stopBtn.onClick.listen(stopBtnClickHandler);
   resetBtn.onClick.listen(resetBtnClickHandler);
 
-  timer = new CountdownTimer(
-      timerMinutes, timerSeconds, Duration(minutes: 25, seconds: 15));
+  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 25));
 }
 
 pomodoroBtnClickHandler(MouseEvent event) {
+  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 25));
   timer.startTimer();
   print('pomodoroclicked1');
 }
 
 shortBreakBtnClickHandler(MouseEvent event) {
-  // timer.createTimer(Duration(minutes: 5));
+  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 5));
+  timer.startTimer();
   print('shortbreakclicked');
 }
 
 longBreakBtnClickHandler(MouseEvent event) {
-  // timer.createTimer(Duration(minutes: 10));
+  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 10));
+  timer.startTimer();
   print('longbreakclicked');
 }
 
@@ -56,5 +58,5 @@ stopBtnClickHandler(MouseEvent event) {
 }
 
 resetBtnClickHandler(MouseEvent event) {
-  print('resetbtnoclicked');
+  timer.resetTimer();
 }

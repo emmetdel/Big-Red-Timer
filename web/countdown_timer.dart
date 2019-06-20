@@ -8,13 +8,17 @@ class CountdownTimer {
   SpanElement minutes;
   SpanElement seconds;
 
-  Timer timer;
+  static Timer timer;
 
   CountdownTimer(this.minutes, this.seconds, this.durationOfTimer) {
     durationSeconds = durationOfTimer.inSeconds;
   }
 
   startTimer() {
+    if (timer != null) {
+      timer.cancel();
+      timer = null;
+    }
     timer = Timer.periodic(Duration(seconds: 1), (Timer t) => handleTimer());
   }
 
@@ -43,8 +47,20 @@ class CountdownTimer {
     if (second < 10) {
       secondStr = '0$secondStr';
     }
-
     minutes.text = minuteStr;
     seconds.text = secondStr;
+
+    setTitleTime(minutes.text, seconds.text);
+  }
+
+  setTitleTime(String minutes, String seconds) {
+    var title = querySelector("title");
+    title.text = "Big Red Timer - ($minutes:$seconds)";
+  }
+
+  resetTimer() {
+    pauseTimer();
+    durationSeconds = durationOfTimer.inSeconds;
+    setTime();
   }
 }
