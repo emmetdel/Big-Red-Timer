@@ -16,22 +16,16 @@
   </head>
 
   <body>
-    <header>
-      <nav
-        class="navbar is-light"
-        role="navigation"
-        aria-label="main navigation"
-      >
-        <div class="navbar-brand">
-          <h1 class="navbar-item">Big Red Timer</h1>
-        </div>
-      </nav>
-    </header>
-
     <!-- Main Section -->
-    <section class="container" id="main">
+    <section class="container is-fluid" id="main">
       <!-- Top Buttons Section -->
-      <div class="buttons-container field is-grouped">
+
+      <div class="buttons-container buttons are-">
+        <button class="button is-success" id="pomodoro-btn">Pomodoro</button>
+        <button class="button is-link" id="short-break-btn">Short Break</button>
+        <button class="button is-info" id="long-break-btn">Long Break</button>
+      </div>
+      <!-- <div class="buttons-container columns buttons">
         <button class="button is-primary is-large" id="pomodoro-btn">
           Pomodoro
         </button>
@@ -41,34 +35,25 @@
         <button class="button is-info is-large" id="long-break-btn">
           Long Break
         </button>
-      </div>
+      </div> -->
 
       <!-- Main Timer -->
       <div id="timer-container">
-        <span id="timer-minutes">25</span>
-        <span>:</span>
-        <span id="timer-seconds">00</span>
+        <span class="has-text-weight-semibold" id="timer-minutes">25</span>
+        <span class="has-text-weight-semibold">:</span>
+        <span class="has-text-weight-semibold" id="timer-seconds">00</span>
       </div>
 
       <!-- Buttom Buttons -->
-      <div class="buttons-container bottom-buttons field is-grouped">
-        <button class="button is-success is-large" id="start-btn">
-          <img src="./icons/play.svg" alt="play-button" class="icons" />
-          Start
-        </button>
-        <button class="button is-danger is-large" id="stop-btn">
-          <img src="./icons/stop.svg" alt="play-button" class="icons" />
-          Stop
-        </button>
-        <button class="button is-light is-large" id="reset-btn">
-          <img src="./icons/reset.svg" alt="play-button" class="icons" />
-          Reset
-        </button>
+      <div class="buttons-container buttons are-large">
+        <button class="button is-success" id="start-btn">Start</button>
+        <button class="button is-danger" id="stop-btn">Pause</button>
+        <button class="button is-warning" id="reset-btn">Reset</button>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
       <div class="content has-text-centered">
         <p>
           <strong>Big Red Timer</strong> by

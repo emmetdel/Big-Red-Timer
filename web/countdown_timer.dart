@@ -23,7 +23,9 @@ class CountdownTimer {
   }
 
   pauseTimer() {
-    timer.cancel();
+    if (timer != null) {
+      timer.cancel();
+    }
   }
 
   playTimer() {
