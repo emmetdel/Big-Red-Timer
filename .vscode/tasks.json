@@ -7,6 +7,15 @@
       "label": "Serve & Auto-Refresh",
       "type": "shell",
       "command": "webdev serve --auto=refresh"
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "webdev build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
   ]
 }

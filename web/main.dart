@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'countdown_timer.dart';
+import 'notification_service.dart';
 
 // Top Buttons
 ButtonElement pomodoroBtn = querySelector('#pomodoro-btn');
@@ -16,6 +17,7 @@ SpanElement timerMinutes = querySelector('#timer-minutes');
 SpanElement timerSeconds = querySelector('#timer-seconds');
 
 CountdownTimer timer;
+NotificationService notifications;
 
 void main() {
   // Top button listeners
@@ -28,26 +30,25 @@ void main() {
   stopBtn.onClick.listen(stopBtnClickHandler);
   resetBtn.onClick.listen(resetBtnClickHandler);
 
-  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 25));
-  timer.setTime();
+  notifications = new NotificationService("Your time is up. Take a break.");
+  timer = new CountdownTimer(timerMinutes, timerSeconds, notifications);
 }
 
 pomodoroBtnClickHandler(MouseEvent event) {
-  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 25));
-  timer.pauseTimer();
-  timer.setTime();
+  timer.setDuration(Duration(seconds: 5));
+  notifications.changeNotificationMessage("Your time is up. Take a break.");
 }
 
 shortBreakBtnClickHandler(MouseEvent event) {
-  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 5));
-  timer.pauseTimer();
-  timer.setTime();
+  timer.setDuration(Duration(minutes: 5));
+  notifications
+      .changeNotificationMessage("Your break is up. Get back to work.");
 }
 
 longBreakBtnClickHandler(MouseEvent event) {
-  timer = new CountdownTimer(timerMinutes, timerSeconds, Duration(minutes: 10));
-  timer.pauseTimer();
-  timer.setTime();
+  timer.setDuration(Duration(minutes: 10));
+  notifications
+      .changeNotificationMessage("Your break is up. Get back to work.");
 }
 
 playBtnClickHandler(MouseEvent event) {

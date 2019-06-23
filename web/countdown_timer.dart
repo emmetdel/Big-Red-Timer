@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:html';
 
+import 'notification_service.dart';
+
 class CountdownTimer {
-  Duration durationOfTimer;
+  NotificationService notificationService;
+
+  Duration durationOfTimer = Duration(minutes: 25);
   int durationSeconds;
 
   SpanElement minutes;
@@ -10,16 +14,19 @@ class CountdownTimer {
 
   static Timer timer;
 
-  CountdownTimer(this.minutes, this.seconds, this.durationOfTimer) {
-    durationSeconds = durationOfTimer.inSeconds;
-  }
+  CountdownTimer(this.minutes, this.seconds, this.notificationService);
 
   startTimer() {
     if (timer != null) {
       timer.cancel();
       timer = null;
     }
-    timer = Timer.periodic(Duration(seconds: 1), (Timer t) => handleTimer());
+    timer = Timer.periodic(
+        Duration(seconds: 1), (Timer t) => _handleTimerInterval());
+  }
+
+  playTimer() {
+    startTimer();
   }
 
   pauseTimer() {
@@ -28,18 +35,20 @@ class CountdownTimer {
     }
   }
 
-  playTimer() {
-    startTimer();
+  resetTimer() {
+    pauseTimer();
+    durationSeconds = durationOfTimer.inSeconds;
+    _calculateTime();
   }
 
-  handleTimer() {
-    durationSeconds--;
-    if (durationSeconds > 0) {
-      setTime();
-    }
+  setDuration(Duration dura) {
+    this.durationOfTimer = dura;
+    durationSeconds = durationOfTimer.inSeconds;
+
+    this._calculateTime();
   }
 
-  setTime() {
+  _calculateTime() {
     var minute = ((durationSeconds / 60).floor());
     var second = (durationSeconds - (minute * 60));
 
@@ -52,17 +61,22 @@ class CountdownTimer {
     minutes.text = minuteStr;
     seconds.text = secondStr;
 
-    setTitleTime(minutes.text, seconds.text);
+    _updateTextTimeOnPage(minutes.text, seconds.text);
   }
 
-  setTitleTime(String minutes, String seconds) {
+  _updateTextTimeOnPage(String minutes, String seconds) {
     var title = querySelector("title");
     title.text = "Big Red Timer - ($minutes:$seconds)";
   }
 
-  resetTimer() {
-    pauseTimer();
-    durationSeconds = durationOfTimer.inSeconds;
-    setTime();
+  _handleTimerInterval() {
+    durationSeconds--;
+    if (durationSeconds >= 0) {
+      _calculateTime();
+    }
+
+    if (durationSeconds == 0) {
+      notificationService.playNotificationSound();
+    }
   }
 }
