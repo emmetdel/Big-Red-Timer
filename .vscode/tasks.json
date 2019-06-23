@@ -17,6 +17,19 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "Publish Firebase Hosting",
+      "type": "shell",
+      "command": "firebase deploy",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build & Publish",
+      "type": "shell",
+      "command": "firebase deploy",
+      "dependsOn": ["Build"],
+      "problemMatcher": []
     }
   ]
 }
