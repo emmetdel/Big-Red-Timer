@@ -1,4 +1,3 @@
-An absolute bare-bones web app.
+# Big Red Timer
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+A pomodoro timer built using the dart programming language. I have taken inspiration from [Tomato Timer](https://tomatotimer.com). This was built merely as a way for me to learn the dart language.
