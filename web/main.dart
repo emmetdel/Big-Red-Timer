@@ -32,20 +32,24 @@ void main() {
 
   notifications = new NotificationService("Your time is up. Take a break.");
   timer = new CountdownTimer(timerMinutes, timerSeconds, notifications);
+  timer.setDuration(Duration(minutes: 25));
 }
 
 pomodoroBtnClickHandler(MouseEvent event) {
-  timer.setDuration(Duration(seconds: 5));
+  timer.pauseTimer();
+  timer.setDuration(Duration(minutes: 25));
   notifications.changeNotificationMessage("Your time is up. Take a break.");
 }
 
 shortBreakBtnClickHandler(MouseEvent event) {
+  timer.pauseTimer();
   timer.setDuration(Duration(minutes: 5));
   notifications
       .changeNotificationMessage("Your break is up. Get back to work.");
 }
 
 longBreakBtnClickHandler(MouseEvent event) {
+  timer.pauseTimer();
   timer.setDuration(Duration(minutes: 10));
   notifications
       .changeNotificationMessage("Your break is up. Get back to work.");

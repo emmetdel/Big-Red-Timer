@@ -21,8 +21,8 @@ class CountdownTimer {
       timer.cancel();
       timer = null;
     }
-    timer = Timer.periodic(
-        Duration(seconds: 1), (Timer t) => _handleTimerInterval());
+    timer =
+        Timer.periodic(Duration(seconds: 1), (Timer t) => _timerInterval(t));
   }
 
   playTimer() {
@@ -58,19 +58,19 @@ class CountdownTimer {
     if (second < 10) {
       secondStr = '0$secondStr';
     }
-    minutes.text = minuteStr;
-    seconds.text = secondStr;
-
-    _updateTextTimeOnPage(minutes.text, seconds.text);
+    _updateTextTimeOnPage(minuteStr, secondStr);
   }
 
   _updateTextTimeOnPage(String minutes, String seconds) {
     var title = querySelector("title");
     title.text = "Big Red Timer - ($minutes:$seconds)";
+    this.minutes.text = minutes;
+    this.seconds.text = seconds;
   }
 
-  _handleTimerInterval() {
+  _timerInterval(Timer t) {
     durationSeconds--;
+
     if (durationSeconds >= 0) {
       _calculateTime();
     }

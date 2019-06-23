@@ -6,7 +6,8 @@
     {
       "label": "Serve & Auto-Refresh",
       "type": "shell",
-      "command": "webdev serve --auto=refresh"
+      "command": "webdev serve --auto=refresh",
+      "problemMatcher": []
     },
     {
       "label": "Build",
