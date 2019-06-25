@@ -1,54 +1,47 @@
-html,
 body {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-@media only screen and (max-width: 700px) {
-  #timer-container > span {
-    font-size: 7rem !important;
-  }
+  height: 100vh;
 }
 
 #main {
+  height: calc(100vh - 30px);
+  padding: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(355px, 500px));
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  justify-content: center;
+}
+
+.container {
+  height: calc(100vh - 82px);
+}
+
+.columns {
+  height: 100%;
+}
+
+.number-output {
+  font-size: 8rem;
+  line-height: 90px;
+}
+
+#todo-section,
+#main-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  justify-self: center;
-  width: 100vw;
-  height: calc(100vh - 4rem);
-}
-
-#timer-container > span {
-  font-size: 8rem;
-  line-height: 7.5rem;
-}
-
-#timer-container {
-  display: flex;
+  height: 500px;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  margin: 2rem 0;
+  padding: 15px;
 }
 
-#reset-btn {
-  color: white;
-}
-
-.buttons-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center !important;
-}
-
-.button:nth-last-of-type(:last-child) {
-  margin-right: 0.75rem;
+.section {
+  padding: 30px 15px;
 }
 
 footer {
-  height: 4rem;
+  height: 30px;
 }

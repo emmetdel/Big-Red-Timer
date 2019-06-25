@@ -16,44 +16,126 @@
   </head>
 
   <body>
-    <!-- Main Section -->
-    <section class="container is-fluid" id="main">
-      <!-- Top Buttons Section -->
+    <nav
+      class="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          Big Red Timer
+        </a>
 
-      <div class="buttons-container buttons are-">
-        <button class="button is-success" id="pomodoro-btn">Pomodoro</button>
-        <button class="button is-link" id="short-break-btn">Short Break</button>
-        <button class="button is-info" id="long-break-btn">Long Break</button>
-      </div>
-      <!-- <div class="buttons-container columns buttons">
-        <button class="button is-primary is-large" id="pomodoro-btn">
-          Pomodoro
-        </button>
-        <button class="button is-link is-large" id="short-break-btn">
-          Short Break
-        </button>
-        <button class="button is-info is-large" id="long-break-btn">
-          Long Break
-        </button>
-      </div> -->
-
-      <!-- Main Timer -->
-      <div id="timer-container">
-        <span class="has-text-weight-semibold" id="timer-minutes">25</span>
-        <span class="has-text-weight-semibold">:</span>
-        <span class="has-text-weight-semibold" id="timer-seconds">00</span>
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
 
-      <!-- Buttom Buttons -->
-      <div class="buttons-container buttons are-large">
-        <button class="button is-success" id="start-btn">Start</button>
-        <button class="button is-danger" id="stop-btn">Pause</button>
-        <button class="button is-warning" id="reset-btn">Reset</button>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>
+
+          <a class="navbar-item">
+            Documentation
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+              <a class="navbar-item">
+                Jobs
+              </a>
+              <a class="navbar-item">
+                Contact
+              </a>
+              <hr class="navbar-divider" />
+              <a class="navbar-item">
+                Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </nav>
+
+    <div id="main" class="content">
+      <div class="grid">
+        <!-- Main Section -->
+        <section id="main-section" class="card">
+          <!-- Top Buttons Section -->
+          <div>
+            <button class="button is-success" id="pomodoro-btn">
+              Pomodoro
+            </button>
+            <button class="button is-link" id="short-break-btn">
+              Short Break
+            </button>
+            <button class="button is-info" id="long-break-btn">
+              Long Break
+            </button>
+          </div>
+
+          <!-- Main Timer -->
+          <div id="time-container">
+            <span
+              class="has-text-weight-semibold number-output"
+              id="timer-minutes"
+              >25</span
+            >
+            <span class="has-text-weight-semibold number-output">:</span>
+            <span
+              class="has-text-weight-semibold number-output"
+              id="timer-seconds"
+              >00</span
+            >
+          </div>
+
+          <!-- Buttom Buttons -->
+          <div>
+            <button class="button is-success" id="start-btn">Start</button>
+            <button class="button is-danger" id="stop-btn">Pause</button>
+            <button class="button is-warning" id="reset-btn">Reset</button>
+          </div>
+        </section>
+
+        <!-- Todo Section -->
+        <section id="todo-section" class="card">
+          <h1>Todo List</h1>
+        </section>
+      </div>
+    </div>
 
     <!-- Footer -->
-    <footer>
+    <footer class="is-primary">
       <div class="content has-text-centered">
         <p>
           <strong>Big Red Timer</strong> by
@@ -61,5 +143,21 @@
         </p>
       </div>
     </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-app.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAe0AnB1KnNfwVL68I91blarsILhi9DzWU",
+        authDomain: "big-red-timer.firebaseapp.com",
+        databaseURL: "https://big-red-timer.firebaseio.com",
+        projectId: "big-red-timer",
+        storageBucket: "",
+        messagingSenderId: "611277786330",
+        appId: "1:611277786330:web:2334385eb0433c12"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
